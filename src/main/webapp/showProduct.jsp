@@ -36,5 +36,7 @@
 			rs.close();
 			%>
 		</table>
+		
+		<a href="/jdbc-example2/add">Add</a>
 	</body>
 </html>
