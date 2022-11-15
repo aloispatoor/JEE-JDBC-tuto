@@ -11,6 +11,10 @@
 	</head>
 	<body>
 		<h1>List of all Products</h1>
+		<% if (request.getAttribute("msg") != null) { %>
+			<h4>${msg}</h4>
+		<% } %>
+		
 		<%
 			Connection con = UtilConnexion.seConnecter();
 			ResultSet rs = con.createStatement().executeQuery("SELECT * from product");
@@ -22,6 +26,8 @@
 				<th>Title</th>
 				<th>Description</th>
 				<th>Price</th>
+				<th>Delete</th>
+				<th>Update</th>
 			</tr>
 			<% while (rs.next()) { %>
 			<tr>
@@ -29,6 +35,8 @@
 				<td> <%= rs.getString(2) %> </td>
 				<td> <%= rs.getString(3) %> </td>
 				<td> <%= rs.getFloat(4) %> </td>
+				<td> <a href="/jdbc-example2/delete?id=<%= rs.getInt(1) %>">Delete</a> </td>
+				<td> <a href="/jdbc-example2/update?id=<%= rs.getInt(1) %>">Update</a> </td>
 			</tr>
 			<% 
 			} 
